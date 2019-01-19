@@ -205,7 +205,7 @@ public class FirebasePluginMessagingService extends FirebaseMessagingService {
                         Uri soundPath = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + getPackageName() + "/raw/" + sound);
                         Log.d(TAG, "Parsed sound is: " + soundPath.toString());
                         AudioAttributes audioAttributes = new AudioAttributes.Builder()
-                                .setContentType(AudioAttributes.CONTENT_TYPE_NOTIFICATION)
+                                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
                                 .setUsage(AudioAttributes.USAGE_NOTIFICATION)
                                 .build();
                         channel.setSound(soundPath, audioAttributes);
