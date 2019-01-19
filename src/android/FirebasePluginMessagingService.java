@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
+import android.media.AudioAttributes;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
@@ -203,7 +204,11 @@ public class FirebasePluginMessagingService extends FirebaseMessagingService {
                         Log.d(TAG, "sound before path is: " + sound);
                         Uri soundPath = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + getPackageName() + "/raw/" + sound);
                         Log.d(TAG, "Parsed sound is: " + soundPath.toString());
-                        channel.setSound(soundPath);
+                        AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                                .setContentType(AudioAttributes.CONTENT_TYPE_NOTIFICATION)
+                                .setUsage(AudioAttributes.USAGE_NOTIFICATION)
+                                .build();
+                        channel.setSound(soundPath, audioAttributes);
                     } else {
                         Log.d(TAG, "Sound was null ");
                     }
