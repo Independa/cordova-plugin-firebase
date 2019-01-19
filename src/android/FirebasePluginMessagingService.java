@@ -199,6 +199,14 @@ public class FirebasePluginMessagingService extends FirebaseMessagingService {
                     channel.enableLights(true);
                     channel.enableVibration(true);
                     channel.setShowBadge(true);
+                    if (sound != null) {
+                        Log.d(TAG, "sound before path is: " + sound);
+                        Uri soundPath = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + getPackageName() + "/raw/" + sound);
+                        Log.d(TAG, "Parsed sound is: " + soundPath.toString());
+                        channel.setSound(soundPath);
+                    } else {
+                        Log.d(TAG, "Sound was null ");
+                    }
                     if (lights != null) {
                         channel.setLightColor(lightArgb);
                     }
